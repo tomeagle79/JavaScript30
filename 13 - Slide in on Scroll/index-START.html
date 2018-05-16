@@ -75,25 +75,23 @@ function checkSlide(e){
     // const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height;
 
     // slide in at halfway down image
-   // const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+   const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
    // slide in at top of image
-  const slideInAt = (window.scrollY + window.innerHeight);
-    // console.log(slideInAt);
-    // position of the image bottom = image top offset plus height of image
-    // const imageBottom = sliderImage.offsetTop + sliderImage.height;
-    // const isHalfShown = slideInAt > sliderImage.offsetTop;
-    // console.log(sliderImage.offsetTop);
-    // if(isHalfShown){
-    //   sliderImage.classList.add('active');
-    // }
+  // const slideInAt = (window.scrollY + window.innerHeight);
+    //position of the image bottom = image top offset plus height of image
+    const imageBottom = sliderImage.offsetTop + sliderImage.height;
+    const isHalfShown = slideInAt > sliderImage.offsetTop;
+    if(isHalfShown){
+      sliderImage.classList.add('active');
+    }
 
   })
-  const firstImage = sliderImages[0];
-  const imageTop = firstImage.offsetTop;
-  const imageBottom = imageTop + firstImage.height;
-  const imageTopToWindowTop = imageTop - scrollY;
-  const imageBottomToWindowTop = imageBottom - scrollY;
-  console.log(imageBottomToWindowTop);
+  // const firstImage = sliderImages[0];
+  // const imageTop = firstImage.offsetTop;
+  // const imageBottom = imageTop + firstImage.height;
+  // const imageTopToWindowTop = imageTop - scrollY;
+  // const imageBottomToWindowTop = imageBottom - scrollY;
+  // console.log(imageBottomToWindowTop);
 }
 window.addEventListener('scroll', debounce(checkSlide));
 </script>
