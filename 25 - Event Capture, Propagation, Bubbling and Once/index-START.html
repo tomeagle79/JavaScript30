@@ -36,10 +36,20 @@
     background:coral;
   }
 </style>
-
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
 
+  function logText(e){
+    //e.stopPropagation();
+    console.log(this.classList.value);
+  }
+
+  document.body.addEventListener('click', logText);
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    capture: true // captures the event on the way down the tree, not up
+  }));
 </script>
 </body>
 </html>
