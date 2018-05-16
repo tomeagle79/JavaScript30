@@ -37,9 +37,23 @@
   }
 </style>
 
-<button></button>
+<button class="button-plain">Click me!</button>
 <script>
+function logText(e) {
+  e.stopPropagation();
+  console.log(this.classList.value);
+}
+const divs = document.querySelectorAll("div");
+const button = document.querySelector("button");
 
+divs.forEach(div =>
+  div.addEventListener("click", logText, {
+    capture: false, // true triggers the behaviour on the way down the tree
+    once: true // only fires the event once, until reload the page
+  })
+);
+
+button = button.addEventListener("click", logText, { once: true });
 </script>
 </body>
 </html>
