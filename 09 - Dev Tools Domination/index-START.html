@@ -6,41 +6,76 @@
 </head>
 <body>
 
+
   <p onClick="makeGreen()">×BREAK×DOWN×</p>
 
   <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+  const dogs = [{ name: "Snickers", age: 2 }, { name: "hugo", age: 8 }];
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
+function makeGreen() {
+  const p = document.querySelector("p");
+  p.style.color = "#BADA55";
+  p.style.fontSize = "50px";
+}
+
+// Regular
+
+// Interpolated
+console.log("Hello I am a %s string", "stringy");
+
+// Styled
+// console.log(" %c Hello I am a string", "font-size: 70px; background: red");
+
+// warning!
+console.warn("uh oh!!");
+
+// Error :|
+console.error("Oh shit!!");
+
+// Info
+console.info("Crocodiles eat 3-4 people per meal");
+
+// Testing
+const p = document.querySelector("p");
+console.assert(p.classList.contains("onclick"), "That is wrong!");
+
+// clearing
+console.clear();
+// Viewing DOM Elements
+console.log(p);
+console.dir(p);
+// Grouping together
+dogs.forEach(dog => {
+  // console.groupCollapsed(`${dog.name}`);
+  console.group(`${dog.name}`);
+  console.log(`This is ${dog.name}`);
+  console.log(`${dog.name} is ${dog.age} years old`);
+  console.groupEnd(`${dog.name}`);
+});
+
+// counting
+console.count("div");
+console.count("div");
+console.count("div");
+
+// timing
+
+console.time("Fetching data");
+fetch("https://api.github.com/users/tomeagle79")
+  .then(data => data.json())
+  .then(data => {
+    console.timeEnd("Fetching data");
+    for (key in data) {
+      // console.log(key + "%s" + data[key], ": ");
+      // document.write(`<p><strong>${key}:</strong> ${data[key]}</p>`);
     }
+    // console.dir(data);
+    console.table(data);
+  });
 
-    // Regular
+// table
+console.table(dogs);
+</script>
 
-    // Interpolated
-
-    // Styled
-
-    // warning!
-
-    // Error :|
-
-    // Info
-
-    // Testing
-
-    // clearing
-
-    // Viewing DOM Elements
-
-    // Grouping together
-
-    // counting
-
-    // timing
-
-  </script>
 </body>
 </html>
