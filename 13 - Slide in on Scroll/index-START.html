@@ -43,6 +43,7 @@
   </div>
 
   <script>
+  // the debouce reduces the firing of an event handler to the wait time, eg every 20 ms
   function debounce(func, wait = 20, immediate = true) {
   var timeout;
   return function() {
@@ -59,11 +60,42 @@
   };
 }
 const sliderImages = document.querySelectorAll(".slide-in");
-sliderImages.forEach(image => {
-  window.setTimeout(() => {
-    image.classList.add("active");
-  }, 1000);
-});
+function checkSlide(e){
+  //console.count(e);
+  // start sliding in the image when the bottom of the window is halfway up
+  sliderImages.forEach(sliderImage => {
+    /* slideInAt.
+    Amount the document has scrolled up by (window.scrollY), plus
+     height of window (window.innerHeight) gives the position of the bottom of the window from the top
+     of the Document
+
+     */
+
+     // slide in at bottom of image image
+    // const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height;
+
+    // slide in at halfway down image
+   // const slideInAt = (window.scrollY + window.innerHeight) - sliderImage.height / 2;
+   // slide in at top of image
+  const slideInAt = (window.scrollY + window.innerHeight);
+    // console.log(slideInAt);
+    // position of the image bottom = image top offset plus height of image
+    // const imageBottom = sliderImage.offsetTop + sliderImage.height;
+    // const isHalfShown = slideInAt > sliderImage.offsetTop;
+    // console.log(sliderImage.offsetTop);
+    // if(isHalfShown){
+    //   sliderImage.classList.add('active');
+    // }
+
+  })
+  const firstImage = sliderImages[0];
+  const imageTop = firstImage.offsetTop;
+  const imageBottom = imageTop + firstImage.height;
+  const imageTopToWindowTop = imageTop - scrollY;
+  const imageBottomToWindowTop = imageBottom - scrollY;
+  console.log(imageBottomToWindowTop);
+}
+window.addEventListener('scroll', debounce(checkSlide));
 </script>
 
   <style>
