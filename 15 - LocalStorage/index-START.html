@@ -30,9 +30,34 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  function addItem(e){
+    e.preventDefault(); // stop page reloading on submit
+    const text = this.querySelector('[name=item]').value;
+    const item = {
+      text: text, // const text from above
+      done: false
+    }
+    items.push(item); // add the object to the items array
+    populateList(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items)); // add key value pair to local storage. Local storage only accepts a string, so we have to stringify the object first
+    this.reset(); // clear the form
+  }
+
+  function populateList(plates = [], platesList){ // first argument is the object, second is where to append the html
+    platesList.innerHTML = plates.map((plate, i) => { // iterate over the array of plates and append new list items. map() creates new array
+        return `
+        <li>
+          <input type="checkbox" data-index=${i} id="items${i}" ${plate.done ? 'checked' : '' }/>
+          <label for="items${i}">${plate.text}</label>
+        </li>
+        `;
+    }).join(''); // join() creates a string from the array
+  }
+
+  addItems.addEventListener('submit', addItem);
+
 </script>
 
 
 </body>
 </html>
-
