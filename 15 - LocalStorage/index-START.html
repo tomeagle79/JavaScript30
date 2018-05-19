@@ -38,6 +38,7 @@
       done: false
     }
     items.push(item); // add the object to the items array
+    console.log(items);
     populateList(items, itemsList);
     localStorage.setItem('items', JSON.stringify(items)); // add key value pair to local storage. Local storage only accepts a string, so we have to stringify the object first
     this.reset(); // clear the form
@@ -55,6 +56,11 @@
   }
 
   addItems.addEventListener('submit', addItem);
+  itemsList.addEventListener('click', function(e){
+    console.group('Click targets');
+    console.log(e.target);
+    console.groupEnd('Click targets');
+  })
 
 </script>
 
