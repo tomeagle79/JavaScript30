@@ -62,7 +62,13 @@
 
   <script>
   const inputs = document.querySelectorAll('.controls input');
-  console.log(inputs);
+  function handleUpdate(){
+    console.log(this.value);
+  }
+
+  document.addEventListener("readystatechange", function(){
+    console.log(`Ready state = ${document.readyState}`)
+  });
   </script>
 
 </body>
